@@ -67,17 +67,62 @@
                             height="350"
                             style="border-radius: 21px; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); transition: 0.3s;"
                             >
-                        <h2 style="margin-top: 20px; margin-bottom: 20px"><strong>{{$offre->adresse}}</strong></h2>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h2 style="margin-top: 20px; margin-bottom: 20px"><strong>{{$offre->adresse}}</strong></h2>
+                            </div>
+                            <div class="offset-md-4 col-md-4">
+                                <h6 style="text-align: right; margin-top: 30px; margin-bottom: 20px">cord: ({{$offre->cordx}}, {{$offre->cordy}})</h6>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-5" style="padding-left: 60px">
-                        <div style="margin-bottom: 20px; width: 70%">
+                        <div style="margin-bottom: 20px; margin-top: 20px; width: 70%">
                             <p style="margin-bottom: 0px"><i>prix</i></p>
                             <h3>{{$offre->prix}}</h3>
                         </div>
 
+                        <div style="margin-bottom: 20px; margin-top: 20px; width: 70%">
+                            <p style="margin-bottom: 0px"><i>capacite</i></p>
+                            <h3>{{$offre->capacite}} personnes</h3>
+                        </div>
+
+                        <div style="margin-bottom: 20px; margin-top: 20px; width: 70%">
+                            <p style="margin-bottom: 0px"><i>superficie</i></p>
+                            <h3>{{$offre->superficie}} m<sup>2</sup></h3>
+                        </div>
+
                     </div>
                 </div>
-                <hr style="width: 77%; margin-left: 0px; margin-right: 0px;">
+                <hr style="margin-top: 40px; margin-bottom: 60px; width: 77%; margin-left: 0px; margin-right: 0px;">
+
+
+                <h4 style="margin-bottom: 30px">Accessoires</h4>
+
+                <div class="container">
+                    <div class="row">
+                        @if ($offre->wifi)
+                            <div class="col-md-3" style="margin-bottom: 40px; margin-right: 40px; text-align: center">
+                                <img style="border-radius: 5px" src="{{ asset('uploads/img/wifi2.jpeg') }}" alt="wifi" width="150" height="100">
+                                <h5 style="margin-top: 10px;">Wifi</h3>
+                            </div>
+                        @endif
+
+                        @if ($offre->lavage_ligne)
+                            <div class="col-md-3" style="margin-bottom: 40px; margin-right: 40px; text-align: center">
+                                <img style="border-radius: 5px" src="{{ asset('uploads/img/lavage_ligne.jpeg') }}" alt="lavage ligne" width="150" height="100">
+                                <h5 style="margin-top: 10px;">Lavage ligne</h3>
+                            </div>
+                        @endif
+
+                        @if ($offre->lavage_ligne)
+                            <div class="col-md-3" style="margin-bottom: 40px; margin-right: 40px; text-align: center">
+                                <img style="border-radius: 5px" src="{{ asset('uploads/img/climatisation.jpeg') }}" alt="Climatisation" width="150" height="100">
+                                <h5 style="margin-top: 10px;">Climatisation</h3>
+                            </div>
+                        @endif
+                    </div>
+                </div>
 
 
             </div>
