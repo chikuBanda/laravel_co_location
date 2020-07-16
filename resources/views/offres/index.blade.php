@@ -29,6 +29,16 @@
                     text-align: center;
                 "
             >Tous less Offres</h1>
+            <a href="/offres/create"
+                class="btn "
+                style="
+                    position: absolute;
+                    top: 50%;
+                    left: 35%;
+                    right: 35%;
+                    background-color: #FC955B;
+                "
+            >Ajouter un offre</a>
     </div>
     <div id="contents"
         style="

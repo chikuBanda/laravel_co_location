@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Offre;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OffreController extends Controller
 {
@@ -24,7 +25,12 @@ class OffreController extends Controller
      */
     public function create()
     {
-        //
+        if (Auth::check()) {
+            return view('offres.create');
+        }
+        else{
+            return redirect('login');
+        }
     }
 
     /**
@@ -35,7 +41,47 @@ class OffreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $offre = new Offre();
+        $user = Auth::user();
+
+        $offre->user_id = $user->id;
+        $offre->adresse = $request->input('adresse');
+        $offre->cordx = $request->input('cordx');
+        $offre->cordy = $request->input('cordy');
+        $offre->prix = $request->input('prix');
+        $offre->capacite = $request->input('capacite');
+        $offre->superficie = $request->input('superficie');
+
+        if($request->has('wifi'))
+        {
+            $offre->wifi = true;
+        }
+        else
+        {
+            $offre->wifi = false;
+        }
+
+        if($request->has('lavage_ligne'))
+        {
+            $offre->lavage_ligne = true;
+        }
+        else
+        {
+            $offre->lavage_ligne = false;
+        }
+
+        if($request->has('climatisation'))
+        {
+            $offre->climatisation = true;
+        }
+        else
+        {
+            $offre->climatisation = false;
+        }
+
+        $offre->save();
+
+        return redirect('/offres');
     }
 
     /**

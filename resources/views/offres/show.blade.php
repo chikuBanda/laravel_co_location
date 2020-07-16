@@ -68,11 +68,12 @@
                             style="border-radius: 21px; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); transition: 0.3s;"
                             >
                         <div class="row">
-                            <div class="col-md-4">
-                                <h2 style="margin-top: 20px; margin-bottom: 20px"><strong>{{$offre->adresse}}</strong></h2>
+                            <div class="col-md-5">
+                                <h4 style="margin-top: 20px;"><strong>{{$offre->adresse}}</strong></h4>
                             </div>
-                            <div class="offset-md-4 col-md-4">
-                                <h6 style="text-align: right; margin-top: 30px; margin-bottom: 20px">cord: ({{$offre->cordx}}, {{$offre->cordy}})</h6>
+                            <div class="offset-md-3 col-md-4">
+                                <h6 style="text-align: right; margin-top: 20px">lat:{{$offre->cordx}}</h6>
+                                <h6 style="text-align: right;">lng:{{$offre->cordy}}</h6>
                             </div>
                         </div>
                     </div>
@@ -115,7 +116,7 @@
                             </div>
                         @endif
 
-                        @if ($offre->lavage_ligne)
+                        @if ($offre->climatisation)
                             <div class="col-md-3" style="margin-bottom: 40px; margin-right: 40px; text-align: center">
                                 <img style="border-radius: 5px" src="{{ asset('uploads/img/climatisation.jpeg') }}" alt="Climatisation" width="150" height="100">
                                 <h5 style="margin-top: 10px;">Climatisation</h3>
