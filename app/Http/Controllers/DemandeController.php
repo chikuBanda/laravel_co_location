@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Demande;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DemandeController extends Controller
 {
@@ -24,7 +26,7 @@ class DemandeController extends Controller
      */
     public function create()
     {
-        //
+        return view('demandes.create');
     }
 
     /**
@@ -35,7 +37,17 @@ class DemandeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $demande = new Demande();
+        $user = Auth::user();
+
+        $demande->budget_max = $request->input('budget_max');
+        $demande->commentaire = $request->input('commentaire');
+        $request->description = $request->input('description');
+        $demande->user_id = $user->id;
+
+        $demande->save();
+
+        return redirect('demandes');
     }
 
     /**
@@ -46,7 +58,7 @@ class DemandeController extends Controller
      */
     public function show(Demande $demande)
     {
-        //
+        return view('demandes.show', ['demande' => $demande, 'user' => User::find($demande->user_id)]);
     }
 
     /**

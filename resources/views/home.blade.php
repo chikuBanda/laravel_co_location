@@ -75,9 +75,10 @@
         });
 
         var offres = {!! json_encode($offres->toArray(), JSON_HEX_TAG) !!};
+        console.log(offres);
+
 
         var markers = [];
-        console.log(offres);
 
         offres.forEach(function (offre, index) {
             markers[index] = L.marker([offre.cordx, offre.cordy], {
@@ -89,8 +90,9 @@
                 offre.adresse + "</b><br>capacite: <b>" +
                 offre.capacite + " personnes<br></b>prix: <b>" +
                 offre.prix + " dh/mois</b><br>" +
-                '<a href="http://127.0.0.1:8000/offres/' + offre.id + '">plus de details</a>'
-                );
+                '<a href="http://127.0.0.1:8000/offres/' +
+                offre.id + '">plus de details</a>'
+            );
         });
 
     </script>
