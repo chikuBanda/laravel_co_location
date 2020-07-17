@@ -17,8 +17,8 @@
 .iconResize
 {
     transition: 300ms ease;
-    width: 80px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
 }
 
 .navbar-brand > span

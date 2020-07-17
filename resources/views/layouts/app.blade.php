@@ -36,8 +36,8 @@
         <nav class="navbar fixed-top navbar-expand-md shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img id="site_icon" src="{{ asset('uploads/img/logo.png') }}" alt="" srcset="" width="160" height="100" style="transition: 300ms ease;">
-                    <span class="font-x-large">Boite Pizza</span>
+                    <img id="site_icon" src="{{ asset('uploads/img/logo.png') }}" alt="" srcset="" width="160" height="160" style="transition: 300ms ease;">
+                    <span class="font-x-large">Colocation</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -54,24 +54,10 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <div class="dropdown">
-                                    <a class="nav-link font-large" style="cursor: pointer">Commandez</a>
-                                    <div class="dropdown-content">
-                                        <a href="/produits">Produits</a>
-                                        <a href="/formules">Formules</a>
-                                    </div>
-                                </div>
+                                <a class="nav-link font-large" href="/offres">Offres</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link font-large" href="/cart">Cart
-                                    <i class="fas fa-shopping-cart">
-                                        @if (Session::has('cart'))
-                                            <span class="badge badge-success">
-                                                {{Session::get('cart')->totalQuantity}}
-                                            </span>
-                                        @endif
-                                    </i>
-                                </a>
+                                <a class="nav-link font-large" href="/demandes">Demandes</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link font-large" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -83,24 +69,10 @@
                             @endif
                             @else
                                 <li class="nav-item">
-                                    <div class="dropdown">
-                                        <a class="nav-link font-large" style="cursor: pointer">Commandez</a>
-                                        <div class="dropdown-content">
-                                            <a href="/produits">Produits</a>
-                                            <a href="/formules">Formules</a>
-                                        </div>
-                                    </div>
+                                    <a class="nav-link font-large" href="/offres">Offres</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link font-large" href="/cart">Cart
-                                        <i class="fas fa-shopping-cart">
-                                            @if (Session::has('cart'))
-                                                <span class="badge badge-success">
-                                                    {{Session::get('cart')->totalQuantity}}
-                                                </span>
-                                            @endif
-                                        </i>
-                                    </a>
+                                    <a class="nav-link font-large" href="/demandes">Demandes</a>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link font-large dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

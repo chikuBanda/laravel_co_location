@@ -26,7 +26,12 @@ class DemandeController extends Controller
      */
     public function create()
     {
-        return view('demandes.create');
+        if (Auth::check()) {
+            return view('demandes.create');
+        }
+        else{
+            return redirect('login');
+        }
     }
 
     /**

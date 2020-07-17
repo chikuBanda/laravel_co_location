@@ -6,7 +6,7 @@
             width: 100%;
             height: 100vh;
             position: relative;
-            background-image: url('{{ asset('uploads/img/appartment.jpeg') }}');">
+            background-image: url('{{ asset('uploads/img/appartment2.jpg') }}');">
             <div style="background-color: black; width: inherit; height: inherit; opacity: 50%"></div>
             @if (Session::has('success'))
                 <div class="row">

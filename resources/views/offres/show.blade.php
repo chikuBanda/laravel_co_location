@@ -13,7 +13,7 @@
             background-size: cover;
             width: 100%;
             height: 350px;
-            background-image: url('{{ asset('uploads/img/appartment.jpeg') }}');
+            background-image: url('{{ asset('uploads/img/appartment3.jpg') }}');
             position: relative;
         ">
             <div style="background-color: black; width: inherit; height: inherit; opacity: 50%">
