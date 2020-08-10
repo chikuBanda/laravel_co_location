@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\ImageOffre;
 use App\Offre;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Response;
 
 class OffreController extends Controller
 {
@@ -43,6 +46,18 @@ class OffreController extends Controller
     {
         $offre = new Offre();
         $user = Auth::user();
+        $photos = [];
+        $files = $request->file('photos');
+
+        foreach($files as $file){
+            $image_file = $file->getRealPath();
+            $image = Image::make($image_file);
+            $converted_image = $image->encode('jpeg');
+
+            $imageOffre = new ImageOffre();
+            $imageOffre->image = $converted_image;
+            array_push($photos, $imageOffre);
+        }
 
         $offre->user_id = $user->id;
         $offre->adresse = $request->input('adresse');
@@ -80,6 +95,8 @@ class OffreController extends Controller
         }
 
         $offre->save();
+
+        $offre->images()->saveMany($photos);
 
         return redirect('/offres');
     }
@@ -127,5 +144,13 @@ class OffreController extends Controller
     public function destroy(Offre $offre)
     {
         //
+    }
+
+    public function fetch_image($id){
+        $image = ImageOffre::find($id);
+        $image_file = Image::make($image->image);
+        $response = Response::make($image_file->encode('jpeg'));
+        $response->header('Content-Type', 'image/jpeg');
+        return $response;
     }
 }

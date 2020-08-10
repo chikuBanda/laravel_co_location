@@ -70,7 +70,7 @@
                     {{Session::get('error')}}
                 </div>
 
-                <form action="/offres" method="post" id="checkout-form">
+                <form enctype="multipart/form-data" action="/offres" method="post" id="checkout-form">
                     @csrf
 
                     <input type="hidden" id="address_input" name="adresse">
@@ -96,21 +96,21 @@
                             style="height: 400px; margin-bottom: 40px">
                         </div>
 
-                        <div class="col-md-5 form-group" style="margin-bottom: 40px">
+                        <div class="col-md-5" style="margin-bottom: 40px">
                             <div class="form-group">
                                 <label for="superficie">Superficie</label>
                                 <input type="number" id="superficie" class="form-control" name="superficie" required>
                             </div>
                         </div>
 
-                        <div class="col-md-5 offset-md-2 form-group" style="margin-bottom: 40px">
+                        <div class="col-md-5 offset-md-2" style="margin-bottom: 40px">
                             <div class="form-group">
                                 <label for="capacite">Capacite</label>
                                 <input type="number" id="capacite" name="capacite" class="form-control" required>
                             </div>
                         </div>
 
-                        <div class="col-md-5 form-group" style="margin-bottom: 40px">
+                        <div class="col-md-5" style="margin-bottom: 40px">
                             <div class="form-group">
                                 <label for="prix">Prix</label>
                                 <input type="number" id="prix" name="prix" class="form-control" required>
@@ -143,6 +143,12 @@
                             </div>
                         </div>
 
+                        <div class="col-md-12" style="margin-bottom: 40px">
+                            <div class="form-group">
+                                <label for="photo">Photos</label>
+                                <input type="file" id="photo" name="photos[]" class="form-control" placeholder="photos" required multiple>
+                            </div>
+                        </div>
 
                         <div class="col-md-3 offset-md-9">
                             <button type="submit" class="btn btn-success" style="width: 100%">Ajouter offre</button>

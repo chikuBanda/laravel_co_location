@@ -59,6 +59,62 @@
             <div class="container" style="margin-top: 0px; margin-bottom: 100px; padding-left: 130px">
                 <div class="row">
                     <div class="col-md-7">
+                        @if ($offre->images->count()>0)
+                        <!--Carousel Wrapper-->
+                        <div id="carousel-thumb" class="carousel slide carousel-fade carousel-thumbnails" data-ride="carousel">
+                            <!--Slides-->
+                            <div class="carousel-inner" role="listbox">
+                                @foreach ($offre->images as $image)
+                                    @if ($loop->first)
+                                        <div class="carousel-item active">
+                                            <img
+                                                class="d-block"
+                                                src="/image_offre/{{$image->id}}"
+                                                alt="photo"
+                                                width="550"
+                                                height="350"
+                                                style="border-radius: 21px; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); transition: 0.3s;"
+                                                >
+                                        </div>
+                                    @else
+                                        <div class="carousel-item">
+                                            <img
+                                                class="d-block"
+                                                src="/image_offre/{{$image->id}}"
+                                                alt="photo"
+                                                width="550"
+                                                height="350"
+                                                style="border-radius: 21px; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); transition: 0.3s;"
+                                                >
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </div>
+                            <!--/.Slides-->
+                            <!--Controls-->
+                            <a class="carousel-control-prev" href="#carousel-thumb" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carousel-thumb" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                            <!--/.Controls-->
+                            <ol class="carousel-indicators">
+                                @foreach ($offre->images as $image)
+                                    @if ($loop->first)
+                                        <li data-target="#carousel-thumb" data-slide-to="{{$loop->index}}" class="active"> <img class="d-block w-100" src="/image_offre/{{$image->id}}"
+                                            class="img-fluid"></li>
+                                    @else
+                                        <li data-target="#carousel-thumb" data-slide-to="{{$loop->index}}"><img class="d-block w-100" src="/image_offre/{{$image->id}}"
+                                            class="img-fluid"></li>
+                                    @endif
+                                @endforeach
+                            </ol>
+                        </div>
+                        <!--/.Carousel Wrapper-->
+                        @else
                         <img
                             src="{{ asset('uploads/img/appartment.jpeg') }}"
                             alt=""
@@ -67,6 +123,7 @@
                             height="350"
                             style="border-radius: 21px; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); transition: 0.3s;"
                             >
+                        @endif
                         <div class="row">
                             <div class="col-md-5">
                                 <h4 style="margin-top: 20px;"><strong>{{$offre->adresse}}</strong></h4>
@@ -124,8 +181,6 @@
                         @endif
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>

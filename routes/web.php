@@ -25,3 +25,5 @@ Route::resources([
     'offres' => 'OffreController',
     'demandes' => 'DemandeController',
 ]);
+
+Route::get('image_offre/{id}', 'OffreController@fetch_image');

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use App\Offre;
 use Validator;
-use App\Http\Resources\Offre as OffreResource;
+use App\Http\Resources\Demande as DemandeResource;
 
 class DemandeController extends BaseController
 {
@@ -20,7 +20,7 @@ class DemandeController extends BaseController
     {
         $demandes = Demande::all();
 
-        return $this->sendResponse(OffreResource::collection($demandes), 'Demandes retrieved successfully.');
+        return $this->sendResponse(DemandeResource::collection($demandes), 'Demandes retrieved successfully.');
     }
     /**
      * Store a newly created resource in storage.
@@ -51,7 +51,7 @@ class DemandeController extends BaseController
 
         $demande = Demande::create($input);
 
-        return $this->sendResponse(new OffreResource($demande), 'Demande created successfully.');
+        return $this->sendResponse(new DemandeResource($demande), 'Demande created successfully.');
     }
 
     /**
@@ -68,7 +68,7 @@ class DemandeController extends BaseController
             return $this->sendError('Product not found.');
         }
 
-        return $this->sendResponse(new OffreResource($demande), 'Demande retrieved successfully.');
+        return $this->sendResponse(new DemandeResource($demande), 'Demande retrieved successfully.');
     }
 
     /**
@@ -93,12 +93,13 @@ class DemandeController extends BaseController
         }
 
         $demande->budget_max = $input['budget_max'];
+        $demande->numero_tel = $input['numero_tel'];
         $demande->commentaire = $input['commentaire'];
         $demande->user_id = $input['user_id'];
 
         $demande->save();
 
-        return $this->sendResponse(new OffreResource($demande), 'Offre updated successfully.');
+        return $this->sendResponse(new DemandeResource($demande), 'Offre updated successfully.');
     }
 
     /**

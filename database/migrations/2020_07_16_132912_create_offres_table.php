@@ -22,8 +22,9 @@ class CreateOffresTable extends Migration
             $table->integer('capacite');
             $table->boolean('wifi');
             $table->boolean('lavage_ligne');
-            $table->float('cordx', 20, 10);
-            $table->float('cordy', 20, 10);
+            $table->boolean('climatisation');
+            $table->float('cordx', 30, 25);
+            $table->float('cordy', 30, 25);
         });
 
         Schema::table('offres', function (Blueprint $table) {

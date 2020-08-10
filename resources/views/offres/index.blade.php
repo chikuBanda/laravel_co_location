@@ -55,7 +55,15 @@
                     <div class="col-md-4" style="margin-bottom: 120px">
                         <div class="card" style="background-color: white; border-radius: 15px; width: 300px; height: 370px;">
                             <div style="padding-top: 0px; height: 55%; border-radius: 15px; text-align: center; margin-bottom: 10px">
-                                <img src="{{ asset('uploads/img/appartment.jpeg') }}" style="width: 100%; border-radius: 15px 15px 0px 0px; height: 100%;" alt="{{$offre->adresse}}">
+                                @if ($offre->images->count())
+                                    @foreach ($offre->images as $image)
+                                        @if ($loop->first)
+                                            <img src="/image_offre/{{$image->id}}" style="width: 100%; border-radius: 15px 15px 0px 0px; height: 100%;" alt="{{$offre->adresse}}">
+                                        @endif
+                                    @endforeach
+                                @else
+                                    <img src="{{ asset('uploads/img/appartment3.jpg') }}" style="width: 100%; border-radius: 15px 15px 0px 0px; height: 100%;" alt="{{$offre->adresse}}">
+                                @endif
                             </div>
                             <h3 style="text-align: center">{{$offre->adresse}}</h3>
                             <p style="text-align: center">${{$offre->prix}}</p>
