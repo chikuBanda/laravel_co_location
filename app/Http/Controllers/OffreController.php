@@ -120,7 +120,16 @@ class OffreController extends Controller
      */
     public function edit(Offre $offre)
     {
-        //
+        $photo_ids = [];
+        return view(
+            'offres.edit',
+            [
+                'offre' => $offre,
+                'lat' => $offre->cordx,
+                'lng' => $offre->cordy,
+                'photo_ids' => $offre->images()->pluck('id')->toArray(),
+            ]
+        );
     }
 
     /**
@@ -132,7 +141,81 @@ class OffreController extends Controller
      */
     public function update(Request $request, Offre $offre)
     {
-        //
+        $user = Auth::user();
+
+        $offre->user_id = $user->id;
+        $offre->adresse = $request->input('adresse');
+        $offre->cordx = $request->input('cordx');
+        $offre->cordy = $request->input('cordy');
+        $offre->prix = $request->input('prix');
+        $offre->capacite = $request->input('capacite');
+        $offre->superficie = $request->input('superficie');
+
+        if($request->has('wifi'))
+        {
+            $offre->wifi = true;
+        }
+        else
+        {
+            $offre->wifi = false;
+        }
+
+        if($request->has('lavage_ligne'))
+        {
+            $offre->lavage_ligne = true;
+        }
+        else
+        {
+            $offre->lavage_ligne = false;
+        }
+
+        if($request->has('climatisation'))
+        {
+            $offre->climatisation = true;
+        }
+        else
+        {
+            $offre->climatisation = false;
+        }
+
+        $offre->save();
+
+        if($request->has('photo_ids')){
+            $photo_ids = $request->input('photo_ids');
+            $photos_to_delete = [];
+
+            foreach($offre->images as $image){
+                if(!(in_array($image->id, $photo_ids))){
+                    array_push($photos_to_delete, $image->id);
+                }
+            }
+
+            if(count($photos_to_delete) > 0){
+                foreach($photos_to_delete as $id){
+                    ImageOffre::destroy($id);
+                }
+            }
+
+        }
+
+        if($request->hasFile('photos')){
+            $photos = [];
+            $files = $request->file('photos');
+
+            foreach($files as $file){
+                $image_file = $file->getRealPath();
+                $image = Image::make($image_file);
+                $converted_image = $image->encode('jpeg');
+
+                $imageOffre = new ImageOffre();
+                $imageOffre->image = $converted_image;
+                array_push($photos, $imageOffre);
+            }
+
+            $offre->images()->saveMany($photos);
+        }
+
+        return redirect('/offres');
     }
 
     /**

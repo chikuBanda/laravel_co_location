@@ -51,8 +51,6 @@
     </div>
 
     <script>
-
-
         var mymap = L.map('mapid', {
             scrollWheelZoom: false
         }).setView([32.343504,-6.3609538], 18);
@@ -77,7 +75,6 @@
         var offres = {!! json_encode($offres->toArray(), JSON_HEX_TAG) !!};
         console.log(offres);
 
-
         var markers = [];
 
         offres.forEach(function (offre, index) {
@@ -94,7 +91,6 @@
                 offre.id + '">plus de details</a>'
             );
         });
-
     </script>
 @endsection
 

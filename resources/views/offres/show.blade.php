@@ -150,6 +150,10 @@
                             <h3>{{$offre->superficie}} m<sup>2</sup></h3>
                         </div>
 
+                        <div style="margin-bottom: 20px; margin-top: 20px; width: 100%">
+                            <a href="/offres/{{$offre->id}}/edit" class="btn btn-success w-100">Modifier Offre</a>
+                        </div>
+
                     </div>
                 </div>
                 <hr style="margin-top: 40px; margin-bottom: 60px; width: 77%; margin-left: 0px; margin-right: 0px;">
